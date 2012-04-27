@@ -2,8 +2,10 @@ function setId(c,id){
     var a = ['.url_text_field','.taxon_select','.product_select','.blog_select'];
     for( i = 0; i < a.length; i++){
         $(a[i]).attr('id','');
+		$(a[i]).attr('name','');
     }
     $(c).attr('id',id);
+	$(c).attr('name',id);
 }
      var ID = 'menu_url';
 $(function(){
