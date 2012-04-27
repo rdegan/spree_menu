@@ -1,0 +1,10 @@
+<h1><%= t("menu.new_menu") %></h1>
+<%= render "spree/shared/error_messages", :target => @menu %>
+
+<%= semantic_form_for([:admin, @menu]) do |f| %>
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <p class="form-buttons">
+    <%= button t("actions.create"), nil, 'submit' %>
+    <%= t("or") %> <%= link_to t("actions.cancel"), admin_menus_path %>
+  </p>
+<% end %>

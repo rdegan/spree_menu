@@ -1,0 +1,39 @@
+<div class='toolbar'>
+  <ul class='actions'>
+    <li>
+      <%= button_link_to t("menu.new_menu"), spree.new_admin_menu_path, :icon => 'add' %>
+    </li>
+  </ul>
+  <br class="clear" />
+</div>
+
+<h1><%= t("menu.menu") %></h1>
+
+<table class="index sortable" data-hook data-sortable-link="<%= update_positions_admin_menus_url %>">
+	<tr>
+		<th><%= t("menu.name") %></th>
+		<th><%= t("menu.position") %></th>
+		<th><%= t("menu.visible") %></th>
+		<th><%= t("menu.url") %></th>
+		<th><%= t("menu.parent") %></th>
+		<th><%= t(:action) %></th>
+	</tr>
+	<tbody>
+		<% @menus.each do |menu| %>
+		<tr class="<%= cycle('even', 'odd') %>" id="<%= dom_id menu %>">
+			<td>
+				<span class="handle"></span>
+				<%= menu.name %>
+			</td>
+			<td><%= menu.position %></td>
+			<td><%= icon('tick') if menu.visible %></td>
+			<td><%= menu.url %></td>
+			<td><%= menu.parent.nil? ? ' - ' : menu.parent.name %></td>
+			<td>
+				<%= link_to_edit menu %> &nbsp;
+				<%= link_to_delete menu %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

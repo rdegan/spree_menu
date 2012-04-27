@@ -1,0 +1,33 @@
+<%= f.inputs do %>
+    <%= f.input :name, :label => t(:name) %>
+    <%= f.input :presentation, :label => t(:presentation) %>
+
+    <li class="string input required" id="menu_url_input">
+      <%= f.label :url.to_s + '*', :class => 'label' %>
+      <div class="radio_content">
+        <input checked="checked" type="radio" name="url_type" id="url_type_insert_new_url" value="<%= t(:insert_new_url) %>"> <%= t(:insert_new_url) %>
+        <%= f.text_field :url, :class => 'url_text_field' %> <br/>
+        <input type="radio" name="url_type" id="url_type_select_from_taxon" value="<%= t(:select_from_taxon) %>">  <%= f.label 'taxon_select', t(:select_from_taxon) %>
+        <%= f.select :url, options_for_select(Spree::Taxon.all.map { |t| [t.name, seo_url(t)] }), {}, :class => 'taxon_select' %>
+
+        <br/>
+        <input type="radio" name="url_type" id="url_type_select_from_product" value="<%= t(:select_from_product) %>"> <%= t(:select_from_product) %>
+        <%= f.select :url, options_for_select(Spree::Product.all.map { |p| [p.name, product_path(p)] }), {}, :class => 'product_select' %>
+        <br/>
+        <input type="radio" name="url_type" id="url_type_select_from_blog" value="<%= t(:select_from_blog) %>"> <%= t(:select_from_blog) %>
+        <%= f.select :url, options_for_select(Spree::Blog.all.map { |p| [p.name, p.slug] }), {}, :class => 'blog_select' %><br/>
+      </div>
+
+
+    </li>
+
+
+
+    <%= f.input :parent, :label => t(:parent) %>
+    <%= f.input :position, :label => t(:position) %>
+    <%= f.input :visible, :label => t(:visible) %>
+
+
+
+
+<% end %>

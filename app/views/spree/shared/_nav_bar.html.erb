@@ -1,0 +1,24 @@
+<li id="menu_home"> <%=  link_to t(:home), root_path %></li>
+
+<% Spree::Menu::visible.each do |menu| %>
+    <li> <%= link_to menu.presentation, menu.url %>
+      <% if menu.children.count > 0 %>
+          <div class="s_submenu">
+            <h3><%= "#{t(:inside)} #{menu.presentation}" %></h3>
+            <ul class="s_list_1 clearfix">
+              <% menu.children.each do |child_menu| %>
+                  <li> <%= link_to child_menu.presentation, menu.url %>
+                    <% if child_menu.children.count > 0 %>
+                        <ul class="s_list_1 clearfix">
+                          <% child_menu.children.each do |sub_child_menu| %>
+                              <li><%= link_to sub_child_menu.presentation, menu.url %></li>
+                          <% end %>
+                        </ul>
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+    </li>
+<% end %>

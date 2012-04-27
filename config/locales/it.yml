@@ -1,0 +1,12 @@
+it:
+  insert_new_url: "Inserisci un nuovo url a mano"
+  select_from_taxon: "Seleziona da tassonomia"
+  select_from_product: "Seleziona dai prodotti"
+  select_from_blog: "Seleziona dal blog"
+  parent: "Padre"
+  position: "Posizione"
+  visible: "Visibile"
+  menus: "Menu"
+  menu:
+    new_menu: "Nuovo menu"
+    editing_menus: "Modifica menu"
