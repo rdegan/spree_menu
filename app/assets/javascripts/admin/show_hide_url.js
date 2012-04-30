@@ -1,24 +1,23 @@
-function setId(c,id){
+function update_disabled(c){
     var a = ['.url_text_field','.taxon_select','.product_select','.blog_select'];
     for( i = 0; i < a.length; i++){
-        $(a[i]).attr('id','');
-		$(a[i]).attr('name','');
+        $(a[i]).attr('disabled', true);
     }
-    $(c).attr('id',id);
-	$(c).attr('name',id);
+    $(c).attr('disabled', false);
 }
-     var ID = 'menu_url';
+
 $(function(){
    $("#url_type_insert_new_url").click(function(){
-        setId('.url_text_field',ID);
+       update_disabled('.url_text_field');
    });
     $("#url_type_select_from_taxon").click(function(){
-            setId('.taxon_select',ID);
+        update_disabled('.taxon_select');
        });
     $("#url_type_select_from_product").click(function(){
-            setId('.product_select',ID);
+        update_disabled('.product_select');
        });
     $("#url_type_select_from_blog").click(function(){
-            setId('.blog_select',ID);
+        update_disabled('.blog_select');
        });
+    update_disabled('.url_text_field');
 });
