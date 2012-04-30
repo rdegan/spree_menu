@@ -1,7 +1,7 @@
 module Spree
   class Menu < ActiveRecord::Base
 
-    scope :visible, lambda { where('visible = true and parent_id IS NULL').order('position DESC') }
+    scope :visible, lambda { where('visible = true and parent_id IS NULL').order('position') }
 
     validates :name,:presentation,:url , :presence => true
 
