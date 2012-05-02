@@ -19,5 +19,11 @@ $(function(){
     $("#url_type_select_from_blog").click(function(){
         update_disabled('.blog_select');
        });
-    update_disabled('.url_text_field');
+
+    $('#edit_menu').submit(function(){
+       if(!$('#url_type_insert_new_url').is(':checked')){
+            $('#menu_url').val('');
+           $('#menu_url').attr('disabled',false);
+       }
+    });
 });

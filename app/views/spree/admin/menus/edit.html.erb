@@ -1,7 +1,7 @@
 <h1><%= t("menu.editing_menus") %></h1>
 <%= render "spree/shared/error_messages", :target => @menu %>
 
-<%= semantic_form_for([:admin, @menu],:html => { :multipart => true }) do |f| -%>
+<%= semantic_form_for([:admin, @menu],:html => { :multipart => true ,:id => 'edit_menu' }) do |f| -%>
   <%= render :partial => "form", :locals => { :f => f } %>
   <p class="form-buttons">
     <%= button t("actions.update"), nil, 'submit' %>

@@ -27,7 +27,9 @@
 			</td>
 			<td><%= menu.position %></td>
 			<td><%= icon('tick') if menu.visible %></td>
-			<td><%= menu.url %></td>
+
+              <td><%= link menu  %></td>
+
 			<td><%= menu.parent.nil? ? ' - ' : menu.parent.name %></td>
 			<td>
 				<%= link_to_edit menu %> &nbsp;

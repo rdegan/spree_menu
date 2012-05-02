@@ -5,20 +5,32 @@
     <li class="string input required" id="menu_url_input">
       <%= f.label :url.to_s + '*', :class => 'label' %>
       <div class="radio_content">
-        <input checked="checked" type="radio" name="url_type" id="url_type_insert_new_url" value="<%= t(:insert_new_url) %>"> <%= t(:insert_new_url) %>
-        <%= f.text_field :url, :class => 'url_text_field' %> <br/>
-        <input type="radio" name="url_type" id="url_type_select_from_taxon" value="<%= t(:select_from_taxon) %>">  <%= f.label 'taxon_select', t(:select_from_taxon) %>
-        <%= f.select :url, options_for_select(Spree::Taxon.all.map { |t| [t.name, seo_url(t)] }), {}, :class => 'taxon_select' %>
 
+        <% if @menu.linkable_type != "Spree::Product" && @menu.linkable_type != "Spree::Page" && @menu.linkable_type != "Spree::Taxon" %>
+            <input  checked="checked" type="radio" name="url_type" id="url_type_insert_new_url" value="<%= t(:insert_new_url) %>"> <%= t(:insert_new_url) %>
+            <%= f.text_field :url, :class => 'url_text_field' %> <br/>
+        <% else %>
+            <input  type="radio" name="url_type" id="url_type_insert_new_url" value="<%= t(:insert_new_url) %>"> <%= t(:insert_new_url) %>
+            <%= f.text_field :url, :class => 'url_text_field', :disabled => 'disabled' %> <br/>
+        <% end %>
+        <input <%= 'checked="checked"' if @menu.linkable_type == "Spree::Taxon" %> type="radio" name="url_type" id="url_type_select_from_taxon" value="<%= t(:select_from_taxon) %>">  <%= f.label 'taxon_select', t(:select_from_taxon) %>
+        <%= f.select :linkable_id, options_for_select(Spree::Taxon.all.map { |t| [t.name, t.id] },
+                                                      @menu.linkable_type == "Spree::Taxon" ? @menu.linkable_id : nil),
+                     {}, {:class => 'taxon_select' , :disabled => @menu.linkable_type != "Spree::Taxon" }  %>
+        <%= hidden_field_tag "menu[linkable_type]",Spree::Taxon.first.class.name, {:class => 'taxon_select' , :disabled => @menu.linkable_type != "Spree::Taxon" }  %>
         <br/>
-        <input type="radio" name="url_type" id="url_type_select_from_product" value="<%= t(:select_from_product) %>"> <%= t(:select_from_product) %>
-        <%= f.select :url, options_for_select(Spree::Product.all.map { |p| [p.name, product_path(p)] }), {}, :class => 'product_select' %>
+        <input <%= 'checked="checked"' if @menu.linkable_type == "Spree::Product" %> type="radio" name="url_type" id="url_type_select_from_product" value="<%= t(:select_from_product) %>"> <%= t(:select_from_product) %>
+        <%= f.select :linkable_id, options_for_select(Spree::Product.all.map { |p| [p.name, p.id] },
+                                                      @menu.linkable_type == "Spree::Product" ? @menu.linkable_id : nil),
+                     {}, {:class => 'product_select', :disabled => @menu.linkable_type != "Spree::Product"} %>
+        <%= hidden_field_tag "menu[linkable_type]",Spree::Product.first.class.name, {:class => 'product_select', :disabled => @menu.linkable_type != "Spree::Product"}  %>
         <br/>
-        <input type="radio" name="url_type" id="url_type_select_from_blog" value="<%= t(:select_from_blog) %>"> <%= t(:select_from_blog) %>
-        <%= f.select :url, options_for_select(Spree::Blog.all.map { |p| [p.name, p.slug] }), {}, :class => 'blog_select' %><br/>
+        <input <%= 'checked="checked"' if @menu.linkable_type == "Spree::Page" %> type="radio" name="url_type" id="url_type_select_from_blog" value="<%= t(:select_from_blog) %>"> <%= t(:select_from_blog) %>
+        <%= f.select :linkable_id, options_for_select(Spree::Page.all.map { |p| [p.name, p.id] },
+                                                      @menu.linkable_type == "Spree::Page" ? @menu.linkable_id : nil),
+                     {}, {:class => 'blog_select', :disabled => @menu.linkable_type != "Spree::Page"} %><br/>
+        <%= hidden_field_tag "menu[linkable_type]",Spree::Page.first.class.name, {:class => 'blog_select', :disabled => @menu.linkable_type != "Spree::Page"}   %>
       </div>
-
-
     </li>
 
 

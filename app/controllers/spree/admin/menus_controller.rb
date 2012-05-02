@@ -18,12 +18,14 @@ module Spree
       end
 
       def new
+
         @menu = @object
       end
 
       def edit
         @menu = @object
       end
+
 
       def update_positions
               params[:positions].each do |id, index|
