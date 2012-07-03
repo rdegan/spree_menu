@@ -2,4 +2,14 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+    insert_new_url: "Insert new url"
+    select_from_taxon: "Select from taxon"
+    select_from_product: "Select from product"
+    select_from_blog: "Select from static page"
+    parent: "Parent"
+    position: "Position"
+    visible: "Visible"
+    menus: "Menu"
+    menu:
+      new_menu: "New menu"
+      editing_menus: "Edit menu"
