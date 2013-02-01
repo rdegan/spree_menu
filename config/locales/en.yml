@@ -10,6 +10,5 @@ en:
   position: "Position"
   visible: "Visible"
   menus: "Menu"
-  menu:
-    new_menu: "New menu"
-    editing_menus: "Edit menu"
+  new_menu: "New menu"
+  editing_menus: "Edit menu"

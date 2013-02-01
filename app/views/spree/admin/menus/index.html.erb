@@ -1,41 +1,59 @@
-<div class='toolbar'>
-  <ul class='actions'>
-    <li>
-      <%= button_link_to t("menu.new_menu"), spree.new_admin_menu_path, :icon => 'add' %>
-    </li>
-  </ul>
-  <br class="clear" />
+<div class="toolbar" data-hook="toolbar">
+	<ul class="actions">
+		<li id="new_slideshow_link">
+			<%= button_link_to t(:new_menu), new_object_url, {:remote => true, :icon => 'add', :id => 'admin_new_menu'} %>
+		</li>
+	</ul>
+	<br class="clear" />
 </div>
 
-<h1><%= t("menu.menu") %></h1>
+<h1><%= t(:listing_menu) %></h1>
 
-<table class="index sortable" data-hook data-sortable-link="<%= update_positions_admin_menus_url %>">
-	<tr>
-		<th><%= t("menu.name") %></th>
-		<th><%= t("menu.position") %></th>
-		<th><%= t("menu.visible") %></th>
-		<th><%= t("menu.url") %></th>
-		<th><%= t("menu.parent") %></th>
-		<th><%= t(:action) %></th>
+<div id="new_menu" data-hook></div>
+
+<table class="index sortable" id="listing_menu" data-hook data-sortable-link="<%= update_positions_admin_menus_url %>">
+	<tr data-hook="admin_menu_index_headers">
+		<th><%= t(:visible) %></th>
+		<th><%= t(:name) %></th>
+		<th><%= t(:category) %></th>
+		<th><%= t(:url) %></th>
+		<th data-hook="admin_menu_index_header_actions"></th>
 	</tr>
-	<tbody>
-		<% @menus.each do |menu| %>
-		<tr class="<%= cycle('even', 'odd') %>" id="<%= dom_id menu %>">
-			<td>
-				<span class="handle"></span>
-				<%= menu.name %>
-			</td>
-			<td><%= menu.position %></td>
-			<td><%= icon('tick') if menu.visible %></td>
-
-              <td><%= link menu  %></td>
-
-			<td><%= menu.parent.nil? ? ' - ' : menu.parent.name %></td>
-			<td>
-				<%= link_to_edit menu %> &nbsp;
-				<%= link_to_delete menu %>
-			</td>
-		</tr>
-		<% end %>
-	</tbody>
+	<% @menus.each do |menu| %>
+	<tr id="<%= spree_dom_id menu %>" data-hook="admin_menu_index_rows">
+		<td><%= icon('tick') if menu.visible %></td>
+		<td><%= menu.name.upcase %></td>
+		<td><%= menu.category.upcase %></td>
+		<td><%= link(menu) %></td>
+		<td class="actions" data-hook="admin_menu_index_row_actions">
+			<%= link_to_edit menu, :class => 'edit' %>
+			&nbsp;
+			<%= link_to_delete menu %>
+		</td>
+	</tr>
+	<% menu.children.each do |child| %>
+	<tr id="<%= spree_dom_id child %>" data-hook="admin_child_index_rows">
+		<td style="text-align: center;"><%= icon('tick') if child.visible %></td>
+		<td colspan="2"><%= content_tag(:span, "---- #{child.name.upcase}") %></td>
+		<td><%= link(child) %></td>
+		<td class="actions" data-hook="admin_child_index_row_actions">
+			<%= link_to_edit child, :class => 'edit' %>
+			&nbsp;
+			<%= link_to_delete child %>
+		</td>
+	</tr>
+	<% child.children.each do |sub_child| %>
+	<tr id="<%= spree_dom_id sub_child %>" data-hook="admin_sub_child_index_rows">
+		<td style="text-align: center;"><%= icon('tick') if sub_child.visible %></td>
+		<td colspan="2"><%= content_tag(:span, "---- #{sub_child.name.upcase}") %></td>
+		<td><%= link(sub_child) %></td>
+		<td class="actions" data-hook="admin_sub_child_index_row_actions">
+			<%= link_to_edit sub_child, :class => 'edit' %>
+			&nbsp;
+			<%= link_to_delete sub_child %>
+		</td>
+	</tr>
+	<% end %>
+	<% end %>
+	<% end %>
 </table>
