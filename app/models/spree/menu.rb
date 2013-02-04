@@ -18,8 +18,10 @@ module Spree
     
     def initialize(*args)
       super(*args)
-      last_menu = Menu.only_parent.last
-      self.position = last_menu ? last_menu.position + 1 : 0
+      if self.position.blank?
+        last_menu = Menu.only_parent.last
+        self.position = last_menu ? last_menu.position + 1 : 0
+      end
     end
   end
 end
