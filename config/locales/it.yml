@@ -1,8 +1,8 @@
 it:
-  insert_new_url: "Inserisci un nuovo url a mano"
-  select_from_taxon: "Seleziona da tassonomia"
+  insert_new_url: "Inserisci un nuovo url a mano ('javascript: void(0)' per vuoto)"
+  select_from_taxon: "Seleziona da categoria prodotto"
   select_from_product: "Seleziona dai prodotti"
-  select_from_blog: "Seleziona dal blog"
+  select_from_blog: "Seleziona dal pagine"
   parent: "Padre"
   position: "Posizione"
   visible: "Visibile"

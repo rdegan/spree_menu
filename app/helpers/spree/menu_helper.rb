@@ -1,8 +1,7 @@
 # encoding: UTF-8
 
 module Spree
-  module MenuHelper
-    
+  module MenuHelper    
     def link(menu)
       if menu.url.blank?
         return product_path(menu.linkable) if menu.linkable.class == Spree::Product
