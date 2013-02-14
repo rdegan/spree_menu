@@ -1,5 +1,5 @@
 it:
-  insert_new_url: "Inserisci un nuovo url a mano ('javascript: void(0)' per vuoto)"
+  insert_new_url: "Inserisci un nuovo url a mano ( 'javascript: void(0)' per nessun collegamento )"
   select_from_taxon: "Seleziona da categoria prodotto"
   select_from_product: "Seleziona dai prodotti"
   select_from_blog: "Seleziona dal pagine"
