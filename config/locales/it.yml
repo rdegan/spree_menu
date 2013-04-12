@@ -7,5 +7,5 @@ it:
   position: "Posizione"
   visible: "Visibile"
   menus: "Menu"
-  new_menu: "Nuovo menu"
+  new_menu: "Nuova voce menu"
   editing_menus: "Modifica menu"
